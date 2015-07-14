@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
+
+    <mongo:mongo host="127.0.0.1" port="27017"/>
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg ref="mongo"/>
+        <constructor-arg name="databaseName" value="bookStore"/>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
+    </bean>
+
+    <bean id="bookDAO" class="com.bookstore.dao.impl.BookDAOImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory" />
+        </property>
+    </bean>
+
+    <bean id="orderDAO" class="com.bookstore.dao.impl.OrderDAOImpl">
+        <property name="mongoTemplate">
+            <ref bean="mongoTemplate" />
+        </property>
+        <property name="sessionFactory">
+            <ref bean="sessionFactory" />
+        </property>
+    </bean>
+
+    <bean id="userDAO" class="com.bookstore.dao.impl.UserDAOImpl">
+        <property name="mongoTemplate">
+            <ref bean="mongoTemplate" />
+        </property>
+    </bean>
+
+    <bean id="bookService" class="com.bookstore.service.BookService">
+        <property name="bookDB">
+            <ref bean="bookDAO" />
+        </property>
+        <property name="userDB">
+            <ref bean="userDAO" />
+        </property>
+        <property name="orderDB">
+            <ref bean="orderDAO" />
+        </property>
+    </bean>
+
+    <bean id="orderService" class="com.bookstore.service.OrderService">
+        <property name="bookDB">
+            <ref bean="bookDAO" />
+        </property>
+        <property name="orderDB">
+            <ref bean="orderDAO" />
+        </property>
+    </bean>
+
+    <bean id="userService" class="com.bookstore.service.UserService">
+        <property name="userDB">
+            <ref bean="userDAO" />
+        </property>
+    </bean>
+
+    <bean id="bookPageAction" class="com.bookstore.actions.BookPageAction" scope="prototype">
+        <property name="bookService">
+            <ref bean="bookService" />
+        </property>
+    </bean>
+
+    <bean id="bookAddAction" class="com.bookstore.actions.BookAddAction" scope="prototype">
+        <property name="bookService">
+            <ref bean="bookService" />
+        </property>
+    </bean>
+    
+    <bean id="userAction" class="com.bookstore.actions.UserAction" scope="prototype">
+        <property name="userService">
+            <ref bean="userService" />
+        </property>
+    </bean>
+    
+    <bean id="orderAction" class="com.bookstore.actions.OrderAction" scope="prototype">
+        <property name="orderService">
+            <ref bean="orderService" />
+        </property>
+    </bean>
+
+    <bean id="registerAction" class="com.bookstore.actions.UserAddAction" scope="prototype">
+        <property name="userService">
+            <ref bean="userService" />
+        </property>
+    </bean>
+</beans>

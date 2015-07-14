@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="com.bookstore.actions" extends="struts-default" namespace="/">
+        <action name="AllUsers" class="userAction" method="getAllUser">
+            <result name="success">succ.jsp</result>
+            <result name="input">login.jsp</result>
+        </action>
+        <action name="AllBooks" class="bookPageAction" method="getAllBooks">
+            <result name="success">succ.jsp</result>
+            <result name="input">login.jsp</result>
+        </action>
+        <action name="MyBooks" class="bookPageAction" method="getBookByUser">
+            <result name="success">succ.jsp</result>
+            <result name="input">login.jsp</result>
+        </action>
+        <action name="BookDelete" class="bookPageAction" method="deleteBook">
+            <result name="success">bookPage.jsp</result>
+        </action>
+        <action name="BookAdd" class="bookAddAction">
+            <result name="success">bookPage.jsp</result>
+        </action>
+        <action name="BookBuy" class="bookPageAction" method="buyBook">
+            <result name="success">bookPage.jsp</result>
+        </action>
+        <action name="BookQuery" class="bookPageAction" method="queryBook">
+            <result name="success">bookPage.jsp</result>
+        </action>
+        <action name="UserDelete" class="userAction" method="deleteUser">
+            <result name="success">users.jsp</result>
+        </action>
+        <action name="BookShoppingCart" class="bookPageAction" method="addShoppingCart">
+            <result name="success">bookPage.jsp</result>
+        </action>
+        <action name="UserLogin" class="userAction" method="login">
+            <result name="success">bookPage.jsp</result>
+            <result name="input">login.jsp</result>
+        </action>
+        <action name="UserLogout" class="userAction" method="logout">
+            <result name="success">login.jsp</result>
+        </action>
+        <action name="OrderQueryByUser" class="orderAction" method="queryByUser">
+            <result name="success">statistics.jsp</result>
+        </action>
+        <action name="OrderQueryByBook" class="orderAction" method="queryByBook">
+            <result name="success">statistics.jsp</result>
+        </action>
+        <action name="OrderQueryByTime" class="orderAction" method="queryByTime">
+            <result name="success">statistics.jsp</result>
+        </action>
+        <action name="UserRegister" class="registerAction" method="register">
+            <result name="input">register.jsp</result>
+            <result name="success">login.jsp</result>
+        </action>
+        <action name="UserModify" class="registerAction" method="modify">
+            <result name="success">userModify.jsp</result>
+        </action>
+        <action name="UserGet" class="userAction" method="getUserInfo">
+            <result name="success">succ.jsp</result>
+        </action>
+    </package>
+</struts>

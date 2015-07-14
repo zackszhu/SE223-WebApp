@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="myBookStoreSSH:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/myBookStoreSSH_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="myBookStoreSSH/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="myBookStoreSSH" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Spring-4.1.6.RELEASE" />
+          <element id="library" level="project" name="Struts 2-2.3.20.1" />
+          <element id="library" level="project" name="Hibernate 4.2.2-4.2.2" />
+          <element id="library" level="application" name="mysql-connector-java-5.1.34-bin" />
+          <element id="library" level="project" name="c3p0:c3p0:0.9.1.2" />
+          <element id="library" level="project" name="struts2-spring-plugin-2.3.24" />
+          <element id="library" level="project" name="spring-web-4.1.6.RELEASE" />
+          <element id="library" level="project" name="org.springframework.data:spring-data-mongodb:1.7.0.RELEASE" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,30 @@
+body {
+    width: 800px;
+    margin: 0 auto;
+    font-family: verdana, helvetica, arial, sans-serif;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+form {
+    width: 60%;
+    margin: auto;
+}
+
+form *{
+    margin: auto;
+    padding: 10px;
+}
+
+tr {
+    margin: 5px auto;
+}
+
+a{
+    padding: 0;
+}
+
+
+
